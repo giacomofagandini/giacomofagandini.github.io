@@ -16,13 +16,13 @@
 </head>
 
 <body style='margin : 0; overflow: hidden; font-family: Monospace;'>
-	<video id="video" autoplay loop muted playsinline crossorigin="anonymous" webkit-playsinline style="display:none">
+	<video id="video" loop muted playsinline crossorigin="anonymous" webkit-playsinline style="display:none">
 		<source src="video/pd.ogv" type='video/ogg; codecs="theora, vorbis"'>
 		<source src="video/pd.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
   </video>
 
 
-<script>
+  <script>
   var scene, camera, renderer, clock, deltaTime, totalTime;
 	var arToolkitSource, arToolkitContext;
 	var markerRoot1;
@@ -151,7 +151,7 @@
 	let video = document.getElementById('video');
 	video.play();
 }
-playVideo();
-</script>
+  playVideo();
+  </script>
 </body>
 </html>
