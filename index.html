@@ -2,7 +2,7 @@
 <head>
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<title>Alnylam</title>
+	<title>Hello, world!</title>
 	<!-- include three.js library -->
 	<script src='js/three.js'></script>
 	<!-- include jsartookit -->
@@ -15,23 +15,33 @@
 	<script src="threex/threex-armarkercontrols.js"></script>
 </head>
 
-<body style='margin : 0; overflow: hidden; font-family: Monospace;'>
-	<video id="video" loop muted playsinline crossorigin="anonymous" webkit-playsinline style="display:none">
-		<source src="video/pd.ogv" type='video/ogg; codecs="theora, vorbis"'>
-		<source src="video/pd.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-  </video>
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
 
+<video id="video" autoplay loop crossOrigin="anonymous" webkit-playsinline style="display:none">
+	<source src="video/sintel.ogv" type='video/ogg; codecs="theora, vorbis"'>
+	<source src="video/sintel.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+</video>
 
-  <script>
-  var scene, camera, renderer, clock, deltaTime, totalTime;
-	var arToolkitSource, arToolkitContext;
-	var markerRoot1;
-	var mesh1;
+<!--
+  Example created by Lee Stemkoski: https://github.com/stemkoski
+  Based on the AR.js library and examples created by Jerome Etienne: https://github.com/jeromeetienne/AR.js/
+-->
 
-	initialize();
-	animate();
-	function initialize()
-	{
+<script>
+
+var scene, camera, renderer, clock, deltaTime, totalTime;
+
+var arToolkitSource, arToolkitContext;
+
+var markerRoot1;
+
+var mesh1;
+
+initialize();
+animate();
+
+function initialize()
+{
 	scene = new THREE.Scene();
 
 	let ambientLight = new THREE.AmbientLight( 0xcccccc, 0.5 );
@@ -65,11 +75,11 @@
 
 	function onResize()
 	{
-		arToolkitSource.onResizeElement()
-		arToolkitSource.copyElementSizeTo(renderer.domElement)
+		arToolkitSource.onResize()
+		arToolkitSource.copySizeTo(renderer.domElement)
 		if ( arToolkitContext.arController !== null )
 		{
-			arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)
+			arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)
 		}
 	}
 
@@ -121,31 +131,39 @@
 	mesh1.rotation.x = -Math.PI/2;
 
 	markerRoot1.add( mesh1 );
- }
+}
 
 
-  function update()
- {
+function update()
+{
 	// update artoolkit on every frame
 	if ( arToolkitSource.ready !== false )
 		arToolkitContext.update( arToolkitSource.domElement );
-	}
+}
 
 
- function render()
- {
+function render()
+{
 	renderer.render( scene, camera );
- }
+}
 
 
- function animate()
- {
+function animate()
+{
 	requestAnimationFrame(animate);
 	deltaTime = clock.getDelta();
 	totalTime += deltaTime;
 	update();
 	render();
- }
+}
+
+function playVideo(){
+ let video = document.getElementById('video');
+ video.play();
+}
+ playVideo();
+
+</script>
 
 </body>
 </html>
